@@ -34,8 +34,8 @@ if errorlevel 1 (
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "$p = $env:SystemRoot + '\System32\drivers\etc\hosts';" ^
   "$lines = [System.IO.File]::ReadAllLines($p);" ^
-  "$lines = @($lines | Where-Object { $_ -notmatch '^\s*(?!#)\S+\s+(admin\.tgs\.com\.vn|api\.portal\.tgs\.com\.vn)(\s|$)' });" ^
-  "$lines += '10.10.10.91 admin.tgs.com.vn';" ^
+  "$lines = @($lines | Where-Object { $_ -notmatch '^\s*(?!#)\S+\s+(admin\.portal\.tgs\.com\.vn|api\.portal\.tgs\.com\.vn)(\s|$)' });" ^
+  "$lines += '10.10.10.91 admin.portal.tgs.com.vn';" ^
   "$lines += '10.10.10.92 api.portal.tgs.com.vn';" ^
   "[System.IO.File]::WriteAllLines($p, $lines, [System.Text.Encoding]::ASCII)"
 
@@ -49,7 +49,7 @@ if errorlevel 1 (
 ipconfig /flushdns >nul
 
 echo Hosts file updated successfully:
-echo   10.10.10.91 admin.tgs.com.vn
+echo   10.10.10.91 admin.portal.tgs.com.vn
 echo   10.10.10.92 api.portal.tgs.com.vn
 echo.
 echo Backup: "%BACKUP%"
